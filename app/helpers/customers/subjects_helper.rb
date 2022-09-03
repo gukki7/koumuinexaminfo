@@ -1,0 +1,2 @@
+module Customers::SubjectsHelper
+end
