@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="mx-auto">
+    <h2>試験詳細</h2><br>
+      <br><br><br><br>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>試験名</td>
+            <td><%= @exam.name %></td>
+          </tr>
+          <tr>
+            <td>試験難易度</td>
+            <td><%= @exam.level %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= @exam.introduction %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @exam.genre.name %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-md-offset-1 col-md-2 text-right">
+        <%= link_to "編集する", edit_admins_exam_path(@exam), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
