@@ -16,11 +16,11 @@
         </thead>
 
         <tbody>
-          <% @exams.each do |item| %>
+          <% @exams.each do |exam| %>
             <tr>
-              <td><%= item.id %></td>
+              <td><%= exam.id %></td>
               <td><%= link_to exam.name ,admins_exam_path(exam) %></td>
-              <td><%= item.genre.name %></td>
+              <td><%= exam.genre.name %></td>
             </tr>
           <% end %>
         </tbody>

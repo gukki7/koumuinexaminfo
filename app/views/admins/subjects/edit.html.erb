@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="mx-auto">
+    <%= form_for(@exam, url: admins_subject_path) do |f| %>
+    <h2>教科編集</h2>
+    <br><br><br>
+      <div class="col-xs-5 col-xs-offset-2">
+        <table class="new-form-table">
+          <tbody>
+            <tr>
+              <th>教科名</th>
+              <td><%= f.text_field :name, class: "form-control" %></td>
+            </tr>
+
+            <tr>
+              <th>教科説明</th>
+              <td><%= f.text_area :introduction, class: "form-control" %></td>
+            </tr>
+            
+            <tr>
+              <th>勉強法</th>
+              <td><%= f.text_area :method, class: "form-control" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-right">
+        <%= f.submit "更新" ,class: "btn btn-primary text-right" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

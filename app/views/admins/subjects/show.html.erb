@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="mx-auto">
+    <h2>教科詳細</h2><br>
+      <br><br><br><br>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>教科名</td>
+            <td><%= @subject.name %></td>
+          </tr>
+          <tr>
+            <td>教科説明</td>
+            <td><%= @subject.introduction %></td>
+          </tr>
+          <tr>
+            <td>勉強法</td>
+            <td><%= @subject.method %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-md-offset-1 col-md-2 text-right">
+        <%= link_to "編集する", edit_admins_subject_path(@subject), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>

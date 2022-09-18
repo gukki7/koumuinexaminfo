@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
+devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
   registrations: 'admins/registrations'
@@ -20,6 +20,7 @@ devise_for :customers, controllers: {
 
   namespace :customers do
     root to: 'homes#top'
+    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     get 'customers/my_page' => 'customers#show'
     get 'customers/infomation/edit' => 'customers#edit'
     patch 'customers/infomation' => 'customers#update'
