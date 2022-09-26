@@ -1,0 +1,10 @@
+<div class="col-md-3">
+  <h1>教科一覧（全件）</h1>
+  <% @subjects.each do |subject| %>
+  <td>
+    <%= link_to customers_subject_path(subject.id) do %>
+    <% end %>
+  </td>
+  <td><%= subject.name%></td>
+  <% end %>
+</div>

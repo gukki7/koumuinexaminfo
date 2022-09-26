@@ -1,24 +1,39 @@
-<div class="row">
-  <div class="mx-auto">
+<div class="container">
+  <div class="col-md-12 offset-md-6 mx-auto">
     <%= form_for(@exams, url: admins_exams_path) do |f| %>
     <h2>試験新規登録</h2>
     <br><br><br>
-      <div class="col-md-5 col-md-offset-2 ">
+      <div class="col-md-8 offset-md-2 ">
         <table class="new-form-table">
           <tbody>
             <tr>
               <th>試験名</th>
               <td><%= f.text_field :name, class: "form-control" %></td>
             </tr>
-            
+
             <tr>
               <th>試験難易度</th>
-              <td><%= f.text_field :level, class: "form-control" %></td>
+              <td><div class="form-group row" id="star">
+                  <%= f.hidden_field :level, class:'col-md-10 col-form-label' %>
+                  </div>
+
+                  <!-- 評価javascript -->
+                  <script>
+                  $('#star').raty({
+                    size     : 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+
+                    scoreName: 'level[star]',
+                    half: false,
+                  });
+                  </script>
+              </td>
             </tr>
 
             <tr>
               <th>試験説明</th>
-              <td><%= f.text_area :introduction, class: "form-control" %></td>
+              <td><%= f.text_area :introduction, class: "form-control",size: "30x10" %></td>
             </tr>
 
             <tr>

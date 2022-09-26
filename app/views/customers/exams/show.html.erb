@@ -1,0 +1,9 @@
+<div class="row">
+	<div class="col-xs-5 mx-auto">
+		<%= form_for(@exam , url: customers_exams_path(exam_id: @exam), method: :post) do |form| %>
+		<h3><%= @exam.name %></h3>
+		<p><%= @exam.level %></p>
+		<p><%= @exam.introduction %></p>
+		<% end %>
+	</div>
+</div>

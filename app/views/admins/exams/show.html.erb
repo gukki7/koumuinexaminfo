@@ -10,7 +10,17 @@
           </tr>
           <tr>
             <td>試験難易度</td>
-            <td><%= @exam.level %></td>
+            <div id="star-rate<%= @exam.level %>"></div>
+            <script>
+              $('#star-rate<%= @exam.id%>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                half      : false,
+                readOnly: true,
+                score: <%= @exam.level %>,
+              });
+            </script>
           </tr>
           <tr>
             <td>商品説明</td>

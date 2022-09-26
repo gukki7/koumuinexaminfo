@@ -4,6 +4,7 @@ class Admins::TweetsController < ApplicationController
   
   
   
+  
   private
     def if_not_admin
     　redirect_to customers_root_path unless current_customer.admin?

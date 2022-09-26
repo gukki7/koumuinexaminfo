@@ -1,0 +1,11 @@
+<div class="col-md-3">
+  <h1>試験一覧（全件）</h1>
+  <% @exams.each do |exam| %>
+  <td>
+    <%= link_to customers_exam_path(exam.id) do %>
+    <% end %>
+  </td>
+  <td><%= exam. name%></td>
+  <td><%= exam. level%></td><br/>
+  <% end %>
+</div>

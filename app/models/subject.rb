@@ -1,3 +1,3 @@
 class Subject < ApplicationRecord
-  belongs_to :
+  belongs_to :exam
 end
