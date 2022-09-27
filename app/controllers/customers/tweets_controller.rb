@@ -1,8 +1,7 @@
 class Customers::TweetsController < ApplicationController
   def show
     @tweet = Tweet.find(params[:id])
-    @user = @book.user
-    @book_new = Book.new
+    @customer = @tweet.customer
   end
 
   def index
@@ -10,36 +9,34 @@ class Customers::TweetsController < ApplicationController
     @customer = current_customer
   end
 
-  def index
-    @tweets = Tweet.all
-    @customer = current_customer
+  def new
+    @tweets = Tweet.new
   end
 
   def create
-    @book_new = Book.new(book_params)
-    @book_new.user_id = current_user.id
-    if @book_new.save
-    redirect_to book_path(@book_new.id) , notice: 'successfully'
+    @tweet = Tweet.new(tweet_params)
+    @tweet.customer_id = current_customer.id
+    if @tweet.save
+      redirect_to customers_tweet_path(@tweet)
     else
-    @books = Book.all
-    @user = current_user
-    render :index
+      @customer = current_customer
+      redirect_to new_customers_tweet_path
     end
   end
 
   def update
-    @book = Book.find(params[:id])
-    if @book.update(book_params)
-    redirect_to book_path(@book.id), notice: 'successfully'
+    @tweet = Tweet.find(params[:id])
+    if @tweet.update(tweet_params)
+    redirect_to customers_tweet_path(@tweet.id), notice: 'successfully'
     else
     render :edit
     end
   end
 
   def destroy
-    book = Book.find(params[:id])  # データ（レコード）を1件取得
-    if book.delete
-    redirect_to books_path,
+    @tweet = Tweet.find(params[:id])
+    if tweet.delete
+    redirect_to customers_tweets_path,
     notice: 'successfully'
     else
     render :index
@@ -47,16 +44,15 @@ class Customers::TweetsController < ApplicationController
   end
 
   def edit
-    @books = Book.all
-    @book = Book.find(params[:id])
-    if @book.user != current_user
-      redirect_to books_path
+    @tweet = Tweet.find(params[:id])
+    if @tweet.customer != current_customer
+      redirect_to customers_tweet_path
     end
   end
 
   private
   # ストロングパラメータ
-  def book_params
-    params.require(:book).permit(:title, :body)
+  def tweet_params
+    params.require(:tweet).permit(:title, :body)
   end
 end
