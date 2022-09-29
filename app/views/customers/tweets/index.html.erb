@@ -1,24 +1,37 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-md-1">
-    <h2>Books</h2>
-    <table class="table table-hover table-inverse">
-      <thead>
+    <div class="col-md-10 offset-md-1">
+      <div class="post_search">
+        <%= form_with url: customers_tweets_path, method: :get, local: true do |f| %>
+          <%= f.text_field :search, class: 'form-control', placeholder: "キーワード検索"  %>
+          <%= f.button :type => "submit" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <h2>掲示板</h2>
+      <div class="table">
+        <thead>
+          <tr>
+          <th>タイトル</th>
+          <th>本文</th>
+          <th colspan = "2"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% if @section_title.present? %>
+          <tr><%= @section_title %></tr>
+        <% end %>
+      　<% @tweets.each do |tweet| %>
         <tr>
-        <th>タイトル</th>
-        <th>本文</th>
-        <th colspan = "2"></th>
+         <td><%=  link_to tweet.title, customers_tweet_path(tweet.id) %></td>
+         <td><%= tweet.body %></td>
+         <td><%= link_to "#{@tweets.tweet_comments.count} コメント", customers_tweet_path(tweet.id) %></td>
         </tr>
-      </thead>
-      <tbody>
-    　<% @tweets.each do |tweet| %>
-      <tr>
-       <td><%=  link_to tweet.title, customers_tweet_path(tweet.id) %></td>
-       <td><%= tweet.body %></td>
-      </tr>
-      <% end %>
-      </tbody>
-      </table>
+        <% end %>
+        <td> <%=  link_to "新規投稿", new_customers_tweet_path, class: "btn btn-primary" %></td>
+        </tbody>
+      </div>
     </div>
   </div>
 </div>

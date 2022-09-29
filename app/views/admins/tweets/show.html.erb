@@ -1,14 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-1">
-    <h2>Book detail</h2>
+    <h2>投稿詳細</h2>
       <table class = "table">
         <td><%= @tweet.title %></td>
         <td><%= @tweet.body %></td>
-        <% if @tweet.customer == current_customer %>
-        <td> <%=  link_to "編集する", edit_customers_tweet_path(@tweet.id) %></td>
-        <td> <%= link_to "投稿を削除する", customers_tweet_path(@tweet.id), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
-        <% end %>
+        <td> <%=  link_to "編集する", edit_admins_tweet_path(@tweet.id) %></td>
+        <td> <%= link_to "投稿を削除する", admins_tweet_path(@tweet.id), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
       </table>
     </div>
   </div>

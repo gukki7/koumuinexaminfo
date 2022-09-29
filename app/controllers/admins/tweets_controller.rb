@@ -2,6 +2,7 @@ class Admins::TweetsController < ApplicationController
   before_action :authenticate_admin!,only: [:create,:edit,:update,:index, :show, :new]
   def show
     @tweet = Tweet.find(params[:id])
+    @tweet_comment = TweetComment.new
   end
 
   def index

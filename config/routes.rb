@@ -15,7 +15,9 @@ devise_for :customers, controllers: {
     resources :subjects, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy]
+    resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy] do
+    resources :tweet_comments, only: [:create, :destroy]
+    end
   end
 
   namespace :customers do
@@ -28,7 +30,14 @@ devise_for :customers, controllers: {
     patch 'customers/withdraw' => 'customers#withdraw'
     resources :exams, only: [:index, :show,]
     resources :subjects, only: [:index, :show,]
-    resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy]
+    resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy] do
+    get :search, on: :collection
+    resources :tweet_comments, only: [:create, :destroy]
+    end
+  end
+
+  namespace :tweets do
+    resources :searches, only: :index
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

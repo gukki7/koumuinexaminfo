@@ -1,12 +1,20 @@
 class Customers::TweetsController < ApplicationController
+
   def show
     @tweet = Tweet.find(params[:id])
     @customer = @tweet.customer
+    @tweet_comment = TweetComment.new
+    @tweet_comments = TweetComment.all
+    @tweets = Tweet.where("created_at" === Date.today)
   end
 
   def index
     @tweets = Tweet.all
     @customer = current_customer
+    if params[:search].present?
+      @section_title = "「#{params[:search]}」の検索結果"
+      @tweets = Tweet.where('body LIKE ? OR title LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]).per(12).order(:updated_at)
+    end
   end
 
   def new
@@ -17,7 +25,7 @@ class Customers::TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.customer_id = current_customer.id
     if @tweet.save
-      redirect_to customers_tweet_path(@tweet)
+      redirect_to customers_tweets_path(@tweet)
     else
       @customer = current_customer
       redirect_to new_customers_tweet_path
