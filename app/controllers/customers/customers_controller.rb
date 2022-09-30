@@ -1,6 +1,7 @@
 class Customers::CustomersController < ApplicationController
   def show
     @customer = current_customer
+    @bookmarks = Bookmark.where(customer_id: current_customer.id)
   end
 
   def edit

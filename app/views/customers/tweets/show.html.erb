@@ -7,8 +7,13 @@
         <td><%= @tweet.body %></td>
         <td><%= @customer.last_name %></td>
         <% if @tweet.customer == current_customer %>
-        <td> <%=  link_to "編集する", edit_customers_tweet_path(@tweet.id) %></td>
-        <td> <%= link_to "投稿を削除する", customers_tweet_path(@tweet.id), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+          <td> <%=  link_to "編集する", edit_customers_tweet_path(@tweet.id) %></td>
+          <td> <%= link_to "投稿を削除する", customers_tweet_path(@tweet.id), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+        <% end %>
+        <% if @tweet.bookmarked_by?(current_customer) %>
+          <td><%= link_to "ブックマークを外す", customers_tweet_bookmarks_path(@tweet), method: :delete %></td>
+        <% else %>
+          <td><%= link_to "ブックマーク", customers_tweet_bookmarks_path(@tweet), method: :post %></td>
         <% end %>
       </div>
       <div>
@@ -19,6 +24,19 @@
           <% if post_comment.user == current_user %>
             <%= link_to "削除", customers_tweet_tweet_comment_path(tweet_comment), method: :delete %>
           <% end %>
+          <% if @tweet.favorited_by?(current_customer) %>
+              <p>
+                <%= link_to customers_tweet_favorites_path(@tweet), method: :delete do %>
+                  ♥<%= @tweet.favorites.count %> いいね
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to customers_tweet_favorites_path(@tweet), method: :post do %>
+                  ♡<%= @tweet.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% end %>
         <% end %>
       </div>
       <div>
