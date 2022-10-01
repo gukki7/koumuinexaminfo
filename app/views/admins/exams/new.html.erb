@@ -13,7 +13,7 @@
 
             <tr>
               <th>試験難易度</th>
-              <td><div class="form-group row" id="star">
+              <td><div id="star">
                   <%= f.hidden_field :level, class:'col-md-10 col-form-label' %>
                   </div>
                   <script>
@@ -21,8 +21,7 @@
                     size     : 36,
                     starOff:  '<%= asset_path('star-off.png') %>',
                     starOn : '<%= asset_path('star-on.png') %>',
-
-                    scoreName: 'level[star]',
+                    scoreName: 'exam[level]',
                     half: false,
                   });
                   </script>

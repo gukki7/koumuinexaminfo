@@ -14,7 +14,14 @@ class Customers::TweetsController < ApplicationController
     if params[:search].present?
       @section_title = "「#{params[:search]}」の検索結果"
       @tweets = Tweet.where('body LIKE ? OR title LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]).per(12).order(:updated_at)
+    elsif params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      @tweets = @tag.tweets.order(created_at: :desc)
+    else
+      @tweets = Tweet.all.order(created_at: :desc)
     end
+      @tag_lists = Tag.all
+      @tweets = Kaminari.paginate_array(@tweets).page(params[:page]).per(10)
   end
 
   def new
@@ -23,9 +30,11 @@ class Customers::TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.new(tweet_params)
+    @tag_list = params[:tweet][:tag_name_list].split(' ')
     @tweet.customer_id = current_customer.id
     if @tweet.save
-      redirect_to customers_tweets_path(@tweet)
+       @tweet.save_tweets(@tag_list)
+       redirect_to customers_tweets_path(@tweet)
     else
       @customer = current_customer
       redirect_to new_customers_tweet_path

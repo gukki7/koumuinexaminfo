@@ -9,6 +9,7 @@
           <% end %>
         <% end %>
       </div>
+
       <h2>掲示板</h2>
       <div class="table">
         <thead>
@@ -26,7 +27,7 @@
         <tr>
          <td><%=  link_to tweet.title, customers_tweet_path(tweet.id) %></td>
          <td><%= tweet.body %></td>
-         <td><%= link_to "#{@tweets.tweet_comments.count} コメント", customers_tweet_path(tweet.id) %></td>
+         <td><%= link_to "#{@tweets.count} コメント", customers_tweet_path(tweet.id) %></td>
         </tr>
         <% end %>
         <td> <%=  link_to "新規投稿", new_customers_tweet_path, class: "btn btn-primary" %></td>

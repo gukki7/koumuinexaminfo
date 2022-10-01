@@ -12,4 +12,17 @@ class Tweet < ApplicationRecord
   def bookmarked_by?(customer)
     bookmarks.where(customer_id: customer).exists?
   end
+
+
+  def tag_name_list
+    tags.pluck(:tag_name).join(" ")
+  end
+
+  def save_tweets(tag_name_list)
+    tagmaps.destroy_all
+
+    tag_name_list.each do |tag_name|
+      tags << Tag.find_or_create_by(tag_name: tag_name)
+    end
+  end
 end
