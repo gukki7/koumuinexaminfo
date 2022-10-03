@@ -15,6 +15,8 @@ class Admins::SubjectsController < ApplicationController
 
   def create
     @subject = Subject.new(subject_params)
+    
+
     if @subject.save
       redirect_to admins_subject_path(@subject)
     else

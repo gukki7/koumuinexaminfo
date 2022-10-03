@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <table class="table">
+        <thead>
+          <tr>
+          <th>タイトル</th>
+          <th>本文</th>
+          <th colspan = "2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <h3>"<%= @tag.tag_name %>"の投稿一覧</h3></br>
+          <% @tag.tweets.each do |tweet|%>
+            <td><%= tweet.title %></td>
+            <td><%= tweet.body %></td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

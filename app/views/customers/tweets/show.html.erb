@@ -17,7 +17,7 @@
         <% end %>
       </div>
       <div>
-        <p>コメント件数：<%= @tweets.count %></p>
+        <p>コメント件数：<%= @tweet_comments.count %></p>
         <% @tweet_comments.each do |tweet_comment| %>
           <%= tweet_comment.customer.last_name %>
           <%= tweet_comment.created_at.strftime('%Y/%m/%d') %><%= tweet_comment.comment %>
@@ -40,8 +40,8 @@
         <% end %>
       </div>
       <div>
-        <%= form_for(@tweets, @tweet_comment, url: customers_tweet_tweet_comments_path) do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= form_with(url: customers_tweet_tweet_comments_path(@tweet)) do |f| %>
+          <%= f.text_area :comment, rows: '5',size: "30x10", placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>
       </div>

@@ -11,6 +11,7 @@ class Customers::TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
     @customer = current_customer
+    @tweet_comments = TweetComment.all
     if params[:search].present?
       @section_title = "「#{params[:search]}」の検索結果"
       @tweets = Tweet.where('body LIKE ? OR title LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]).per(12).order(:updated_at)
@@ -52,7 +53,7 @@ class Customers::TweetsController < ApplicationController
 
   def destroy
     @tweet = Tweet.find(params[:id])
-    if tweet.delete
+    if @tweet.delete
     redirect_to customers_tweets_path,
     notice: 'successfully'
     else

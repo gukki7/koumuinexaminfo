@@ -1,0 +1,2 @@
+module Admins::ExamManagersHelper
+end

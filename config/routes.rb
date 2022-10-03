@@ -13,6 +13,7 @@ devise_for :customers, controllers: {
   namespace :admins do
     resources :exams, only: [:index, :new, :create, :show, :edit, :update]
     resources :subjects, only: [:index, :new, :create, :show, :edit, :update]
+
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy] do
@@ -36,7 +37,9 @@ devise_for :customers, controllers: {
     get :search, on: :collection
     resources :tweet_comments, only: [:create, :destroy]
     end
+    resources :tags, only: [:show]
   end
+
 
   namespace :tweets do
     resources :searches, only: :index

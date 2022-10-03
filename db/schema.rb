@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_30_060841) do
+ActiveRecord::Schema.define(version: 2022_10_03_113326) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 2022_09_30_060841) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "exam_managers", force: :cascade do |t|
+    t.integer "exam_id"
+    t.integer "subject_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "exams", force: :cascade do |t|
     t.string "name", null: false
     t.float "level", null: false
@@ -80,6 +87,7 @@ ActiveRecord::Schema.define(version: 2022_09_30_060841) do
     t.text "introduction", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "exam_id"
   end
 
   create_table "tagmaps", force: :cascade do |t|

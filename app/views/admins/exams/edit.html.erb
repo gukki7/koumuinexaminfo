@@ -1,24 +1,24 @@
 <div class="row">
-  <div class="mx-auto">
+  <div class="col-md-12 offset-md-6 mx-auto">
     <%= form_for(@exam, url: admins_exam_path) do |f| %>
     <h2>試験編集</h2>
     <br><br><br>
-      <div class="col-xs-5 col-xs-offset-2">
+      <div class="col-md-8 offset-md-2">
         <table class="new-form-table">
           <tbody>
             <tr>
               <th>試験名</th>
               <td><%= f.text_field :name, class: "form-control" %></td>
             </tr>
-            
+
             <tr>
               <th>試験難易度</th>
               <td><%= f.text_field :level, class: "form-control" %></td>
             </tr>
-            
+
             <tr>
               <th>試験説明</th>
-              <td><%= f.text_area :introduction, class: "form-control" %></td>
+              <td><%= f.text_area :introduction, class: "form-control",size: "30x10" %></td>
             </tr>
 
             <tr>

@@ -16,6 +16,14 @@ class Admins::ExamsController < ApplicationController
   def create
     @exam = Exam.new(exam_params)
     if @exam.save
+      subjects =  params[:exam][:subject_ids]
+      subjects.shift
+    
+      subjects.each do |subject|
+       
+        @exam.exam_managers.create!(subject_id: subject)
+      end
+      
       redirect_to admins_exam_path(@exam)
     else
       flash[:genre_created_error] = "ジャンル名を入力してください"

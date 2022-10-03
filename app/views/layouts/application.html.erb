@@ -11,8 +11,8 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <div class="p-3 mb-2 bg-warning text-white">公務員試験info
+    <div class="content">
+    <header class="p-3 mb-2 bg-warning text-white">公務員試験info
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -21,66 +21,76 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-      <td>
-        <%= link_to customers_root_path do %>
-        <% end %>
-      </td>
-      <% if  admin_signed_in? %>
-        <li>
-          <%= link_to "試験一覧", admins_exams_path %>
-        </li>
-        <li>
-          <%= link_to "会員一覧", admins_customers_path  %>
-        </li>
-        <li>
-          <%= link_to "教科一覧", admins_subjects_path %>
-        </li>
-        <li>
-          <%= link_to "ジャンル一覧", admins_genres_path %>
-        </li>
-        <li>
-          <%= link_to "投稿一覧", admins_tweets_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-        </li>
+              <td>
+                <%= link_to customers_root_path do %>
+                <% end %>
+              </td>
+              <% if  admin_signed_in? %>
+                <li>
+                  <%= link_to "試験一覧", admins_exams_path %>
+                </li>
+                <li>
+                  <%= link_to "会員一覧", admins_customers_path  %>
+                </li>
+                <li>
+                  <%= link_to "教科一覧", admins_subjects_path %>
+                </li>
+                <li>
+                  <%= link_to "ジャンル一覧", admins_genres_path %>
+                </li>
+                <li>
+                  <%= link_to "投稿一覧", admins_tweets_path %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                </li>
 
-      <% elsif customer_signed_in? %>
-        <li>
-          <%= link_to "マイページ",customers_customers_my_page_path %>
-        </li>
-        <li>
-          <%= link_to "試験一覧", customers_exams_path %>
-        </li>
-        <li>
-          <%= link_to "教科一覧", customers_subjects_path %>
-        </li>
-        <li>
-          <%= link_to "投稿一覧", customers_tweets_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "試験一覧", customers_exams_path %>
-        </li>
-        <li>
-          <%= link_to "教科一覧", customers_subjects_path %>
-        </li>
-        <li>
-          <%= link_to "新規登録", new_customer_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_customer_session_path %>
-        </li>
-      <% end %>
+              <% elsif customer_signed_in? %>
+                <li>
+                  <%= link_to "マイページ",customers_customers_my_page_path %>
+                </li>
+                <li>
+                  <%= link_to "試験一覧", customers_exams_path %>
+                </li>
+                <li>
+                  <%= link_to "教科一覧", customers_subjects_path %>
+                </li>
+                <li>
+                  <%= link_to "投稿一覧", customers_tweets_path %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to "試験一覧", customers_exams_path %>
+                </li>
+                <li>
+                  <%= link_to "教科一覧", customers_subjects_path %>
+                </li>
+                <li>
+                  <%= link_to "新規登録", new_customer_registration_path %>
+                </li>
+                <li>
+                  <%= link_to "ログイン", new_customer_session_path %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
-        </div>
       </nav>
     </header>
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+    <footer class="p-3 mb-2 bg-warning text-black">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="mx-auto">
+            <h6 class="text-white">公務員試験info </h6>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
