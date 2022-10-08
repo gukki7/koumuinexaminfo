@@ -21,7 +21,7 @@
         <% @tweet_comments.each do |tweet_comment| %>
           <%= tweet_comment.customer.last_name %>
           <%= tweet_comment.created_at.strftime('%Y/%m/%d') %><%= tweet_comment.comment %>
-          <% if post_comment.user == current_user %>
+          <% if tweet_comment.customer == current_customer %>
             <%= link_to "削除", customers_tweet_tweet_comment_path(tweet_comment), method: :delete %>
           <% end %>
           <% if @tweet.favorited_by?(current_customer) %>
@@ -40,7 +40,8 @@
         <% end %>
       </div>
       <div>
-        <%= form_with(url: customers_tweet_tweet_comments_path(@tweet)) do |f| %>
+        <%#= form_with(url: customers_tweet_tweet_comments_path(@tweet)) do |f| %>
+        <%= form_with(model: [@tweet, @tweet_comment],url: customers_tweet_tweet_comments_path(@tweet), local: true) do |f| %>
           <%= f.text_area :comment, rows: '5',size: "30x10", placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>

@@ -1,9 +1,43 @@
-<div class="row">
-	<div class="col-xs-5 mx-auto">
-		<%= form_for(@exam , url: customers_exams_path(exam_id: @exam), method: :post) do |form| %>
-		<h3><%= @exam.name %></h3>
-		<p><%= @exam.level %></p>
-		<p><%= @exam.introduction %></p>
-		<% end %>
-	</div>
-</div>
+<div class="container">
+  <div class="form-inline col-md-12">
+    <h2>試験詳細</h2><br>
+      <br><br><br><br>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="col-2">試験名</td>
+            <td><%= @exam.name %></td>
+          </tr>
+          <tr>
+           <tr>
+            <td>試験科目</td>
+              <% @exam.subjects.each do |subject| %>
+                <td class="col-2"><%= subject.name %></td>
+              <%end%>
+          </tr>
+          <tr>
+            <td>試験難易度</td>
+           <td> <div id="star-rate<%= @exam.id %>"></div></td>
+            <script>
+              $('#star-rate<%= @exam.id%>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                half      : false,
+                readOnly: true,
+                score: <%= @exam.level %>,
+              });
+            </script>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= @exam.introduction %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @exam.genre.name %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

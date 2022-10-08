@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-md-12 offset-md-6 mx-auto">
+  <div class="form-inline col-md-12">
     <h2>試験詳細</h2><br>
       <br><br><br><br>
       <table class="table">
@@ -11,11 +11,9 @@
           <tr>
            <tr>
             <td>試験科目</td>
-            
               <% @exam.subjects.each do |subject| %>
               <td><%= subject.name %> </td>
               <%end%>
-             
           </tr>
           <tr>
             <td>試験難易度</td>

@@ -31,11 +31,11 @@ devise_for :customers, controllers: {
     patch 'customers/withdraw' => 'customers#withdraw'
     resources :exams, only: [:index, :show,]
     resources :subjects, only: [:index, :show,]
-    resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy] do
-    resource :favorites, only: [:create, :destroy]
-    resource :bookmarks, only: [:create, :destroy]
-    get :search, on: :collection
-    resources :tweet_comments, only: [:create, :destroy]
+    resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy, :update] do
+      resource :favorites, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
+      get :search, on: :collection
+      resources :tweet_comments, only: [:create, :destroy]
     end
     resources :tags, only: [:show]
   end

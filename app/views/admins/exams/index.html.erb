@@ -1,29 +1,26 @@
 <div class="row">
   <div class="mx-auto">
   <h2>試験一覧</h2>
-
     <div class="text-right">
         <%= link_to "新規登録" ,new_admins_exam_path, class:"btn btn-lg btn-primary" %>
     </div>
-
-      <table class="table">
-        <thead>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>試験一覧</th>
+          <th>試験名</th>
+          <th>ジャンル</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @exams.each do |exam| %>
           <tr>
-            <th>試験一覧</th>
-            <th>試験名</th>
-            <th>ジャンル</th>
+            <td><%= exam.id %></td>
+            <td><%= link_to exam.name ,admins_exam_path(exam) %></td>
+            <td><%= exam.genre.name %></td>
           </tr>
-        </thead>
-
-        <tbody>
-          <% @exams.each do |exam| %>
-            <tr>
-              <td><%= exam.id %></td>
-              <td><%= link_to exam.name ,admins_exam_path(exam) %></td>
-              <td><%= exam.genre.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+</div>

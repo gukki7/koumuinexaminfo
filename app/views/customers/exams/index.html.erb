@@ -1,11 +1,23 @@
-<div class="col-md-3">
-  <h1>試験一覧（全件）</h1>
-  <% @exams.each do |exam| %>
-  <td>
-    <%= link_to customers_exam_path(exam.id) do %>
-    <% end %>
-  </td>
-  <td><%= exam. name%></td>
-  <td><%= exam. level%></td><br/>
-  <% end %>
+<div class="row">
+  <div class="mx-auto">
+  <h2>試験一覧</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>試験一覧</th>
+          <th>試験名</th>
+          <th>ジャンル</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @exams.each do |exam| %>
+          <tr>
+            <td><%= exam.id %></td>
+            <td><%= link_to exam.name ,customers_exam_path(exam) %></td>
+            <td><%= exam.genre.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -4,6 +4,7 @@ class Tweet < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
+  has_many :tweet_comments, dependent: :destroy
 
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

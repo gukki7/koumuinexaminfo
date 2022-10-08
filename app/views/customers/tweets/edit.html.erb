@@ -10,14 +10,14 @@
         <% end %>
       </ul>
     <% end %>
-  
-    <%= form_for(@tweet, url: customers_tweets_path) do |f| %>
+
+    <%= form_for(@tweet, url: customers_tweet_path) do |f| %>
       <h4>タイトル</h4>
       <%= f.text_field :title %>
-      
+
       <h4>本文</h4>
       <%= f.text_area :body, class: "form-control",size: "30x10" %>
-    
+
      <div><%= f.submit '更新する' %></div>
     <% end %>
     <%=  link_to "投稿詳細", customers_tweet_path(@tweet.id) %>

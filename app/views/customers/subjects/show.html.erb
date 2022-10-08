@@ -1,9 +1,22 @@
-<div class="row">
-	<div class="col-xs-5 mx-auto">
-		<%= form_for(@subject , url: customers_exams_path(exam_id: @subject), method: :post) do |form| %>
-		<h3><%= @subject.name %></h3>
-		<p><%= @subject.method %></p>
-		<p><%= @subject.introduction %></p>
-		<% end %>
-	</div>
+<div class="container">
+  <div class="col-md-8 offset-md-1">
+    <h2>教科詳細</h2><br>
+    <br><br><br><br>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>教科名</th>
+          <td><%= @subject.name %></td>
+        </tr>
+        <tr>
+          <th>教科説明</th>
+          <td><%= @subject.introduction %></td>
+        </tr>
+        <tr>
+          <th>勉強法</th>
+          <td><%= @subject.method %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

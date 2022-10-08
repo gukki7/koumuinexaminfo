@@ -1,10 +1,21 @@
-<div class="col-md-3">
-  <h1>教科一覧（全件）</h1>
-  <% @subjects.each do |subject| %>
-  <td>
-    <%= link_to customers_subject_path(subject.id) do %>
-    <% end %>
-  </td>
-  <td><%= subject.name%></td>
-  <% end %>
+<div class="row">
+  <div class="mx-auto">
+  <h2>教科一覧</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>教科一覧</th>
+          <th>教科名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subjects.each do |subject| %>
+          <tr>
+            <td><%= subject.id %></td>
+            <td><%= link_to subject.name ,customers_subject_path(subject) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
