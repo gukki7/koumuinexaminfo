@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   namespace :customers do
-    root to: 'homes#top'
+    # root to: 'homes#top'
     post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     get 'customers/my_page' => 'customers#show'
     get 'customers/infomation/edit' => 'customers#edit'
@@ -41,5 +41,7 @@ Rails.application.routes.draw do
   namespace :tweets do
     resources :searches, only: :index
   end
+
+  root to: 'customers/homes#top', as: 'customers_root'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
