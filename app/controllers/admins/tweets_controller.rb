@@ -18,8 +18,7 @@ class Admins::TweetsController < ApplicationController
 
   def destroy
     @tweet = Tweet.find(params[:id])
- 
-    if @tweet.delete
+    if @tweet.destroy
     redirect_to admins_tweets_path,
     notice: 'successfully'
     else
