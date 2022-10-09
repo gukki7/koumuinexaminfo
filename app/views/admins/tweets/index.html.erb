@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <div class="post_search">
-        <%= form_with url: customers_tweets_path, method: :get, local: true do |f| %>
+        <%= form_with url: admins_tweets_path, method: :get, local: true do |f| %>
           <%= f.text_field :search, class: 'form-control', placeholder: "キーワード検索"  %>
           <%= f.button :type => "submit" do %>
             <i class="fas fa-search"></i>
@@ -26,10 +26,9 @@
         <tr>
          <td><%=  link_to tweet.title, admins_tweet_path(tweet.id) %></td>
          <td><%= tweet.body %></td>
-         <td><%= link_to "#{@tweet_comments.count} コメント", admins_tweet_path(tweet.id) %></td>
+         <td><%= link_to "#{tweet.tweet_comments.count} コメント", admins_tweet_path(tweet.id) %></td>
         </tr>
         <% end %>
-        <td> <%=  link_to "新規投稿", new_admins_tweet_path, class: "btn btn-primary" %></td>
         </tbody>
       </table>
     </div>

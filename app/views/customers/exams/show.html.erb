@@ -1,18 +1,17 @@
 <div class="container">
   <div class="form-inline col-md-12">
     <h2>試験詳細</h2><br>
-      <br><br><br><br>
       <table class="table">
         <tbody>
           <tr>
-            <td class="col-2">試験名</td>
+            <td class="col-1">試験名</td>
             <td><%= @exam.name %></td>
           </tr>
           <tr>
            <tr>
             <td>試験科目</td>
               <% @exam.subjects.each do |subject| %>
-                <td class="col-2"><%= subject.name %></td>
+                <td class="col-2 text-left"><%= subject.name %></td>
               <%end%>
           </tr>
           <tr>
@@ -30,8 +29,8 @@
             </script>
           </tr>
           <tr>
-            <td>商品説明</td>
-            <td><%= @exam.introduction %></td>
+            <td>試験説明</td>
+            <td class="col-3"><%= @exam.introduction %></td>
           </tr>
           <tr>
             <td>ジャンル</td>

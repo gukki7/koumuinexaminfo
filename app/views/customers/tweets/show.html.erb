@@ -1,48 +1,58 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-md-1">
-    <h2>投稿詳細</h2>
-      <div class = "table">
-        <td><%= @tweet.title %></td>
-        <td><%= @tweet.body %></td>
-        <td><%= @customer.last_name %></td>
-        <% if @tweet.customer == current_customer %>
-          <td> <%=  link_to "編集する", edit_customers_tweet_path(@tweet.id) %></td>
-          <td> <%= link_to "投稿を削除する", customers_tweet_path(@tweet.id), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+    <div class="col-md-10 offset-md-1">
+    <h2>投稿詳細</h2><br>
+      <table class="table">
+        <thead>
+          <tr>
+          <th>タイトル</th>
+          <th>本文</th>
+          <th>投稿者名</th>
+          <th colspan = "2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <td><%= @tweet.title %></td>
+          <td><%= @tweet.body %></td>
+          <td><%= @customer.last_name %></td>
+          <% if @tweet.customer == current_customer %>
+            <td> <%= link_to "編集する", edit_customers_tweet_path(@tweet.id) %></td>
+            <td> <%= link_to "投稿を削除する", customers_tweet_path(@tweet.id), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+          <% end %>
+          <% if @tweet.bookmarked_by?(current_customer) %>
+            <td><%= link_to "ブックマークを外す", customers_tweet_bookmarks_path(@tweet), method: :delete %></td>
+          <% else %>
+            <td><%= link_to "ブックマーク", customers_tweet_bookmarks_path(@tweet), method: :post %></td>
+          <% end %>
+        </tbody>
+      </table>
+       <% if @tweet.favorited_by?(current_customer) %>
+          <p>
+            <%= link_to customers_tweet_favorites_path(@tweet), method: :delete do %>
+              ♥<%= @tweet.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to customers_tweet_favorites_path(@tweet), method: :post do %>
+              ♡<%= @tweet.favorites.count %> いいね
+            <% end %>
+          </p>
         <% end %>
-        <% if @tweet.bookmarked_by?(current_customer) %>
-          <td><%= link_to "ブックマークを外す", customers_tweet_bookmarks_path(@tweet), method: :delete %></td>
-        <% else %>
-          <td><%= link_to "ブックマーク", customers_tweet_bookmarks_path(@tweet), method: :post %></td>
-        <% end %>
-      </div>
-      <div>
-        <p>コメント件数：<%= @tweet_comments.count %></p>
+      <div class="col-10">
+        <h5>コメント件数：<%= @tweet_comments.count %></h5>
         <% @tweet_comments.each do |tweet_comment| %>
-          <%= tweet_comment.customer.last_name %>
-          <%= tweet_comment.created_at.strftime('%Y/%m/%d') %><%= tweet_comment.comment %>
+          <p><%= tweet_comment.customer.last_name %>
+             <%= tweet_comment.created_at.strftime('%Y/%m/%d') %></p>
+          <p><%= tweet_comment.comment %>
           <% if tweet_comment.customer == current_customer %>
             <%= link_to "削除", customers_tweet_tweet_comment_path(tweet_comment), method: :delete %>
-          <% end %>
-          <% if @tweet.favorited_by?(current_customer) %>
-              <p>
-                <%= link_to customers_tweet_favorites_path(@tweet), method: :delete do %>
-                  ♥<%= @tweet.favorites.count %> いいね
-                <% end %>
-              </p>
-              <% else %>
-              <p>
-                <%= link_to customers_tweet_favorites_path(@tweet), method: :post do %>
-                  ♡<%= @tweet.favorites.count %> いいね
-                <% end %>
-              </p>
-            <% end %>
+          <% end %></p>
         <% end %>
       </div>
-      <div>
-        <%#= form_with(url: customers_tweet_tweet_comments_path(@tweet)) do |f| %>
+      <div class="col-10">
         <%= form_with(model: [@tweet, @tweet_comment],url: customers_tweet_tweet_comments_path(@tweet), local: true) do |f| %>
-          <%= f.text_area :comment, rows: '5',size: "30x10", placeholder: "コメントをここに" %>
+          <%= f.text_area :comment, rows: '5',size: "70x5", placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>
       </div>

@@ -1,44 +1,49 @@
-<div class="col-md-3">
-  <h1>マイページ</h1>
-　<th>登録情報<%= link_to '編集する',customers_customers_infomation_edit_path %></th>
-  <table class = "table">
-    <tbody>
-    <tr>
-      <th> 氏名 </th>
-      <th> <%= @customer.last_name %>
-           <%= @customer.first_name %>
-      </th>
-    </tr>
-      <th> カナ </th>
-      <th> <%= @customer.last_name_kana %>
-           <%= @customer.first_name_kana %>
-      </th>
-    <tr>
-      <th> 電話番号 </th>
-      <th> <%= @customer.telephone_number %> </th>
-    </tr>
-    <tr>
-      <th> メールアドレス </th>
-      <th> <%= @customer.email %> </th>
-    </tr>
-
-    <caption>ブックマーク一覧</caption>
-      <tr>
-        <th>投稿者名</th>
-        <th>タイトル</th>
-        <th>本文</th>
-      </tr>
-      <% @bookmarks.each do |bookmark| %>
+<div class = "container">
+  <div class="col-md-10">
+    <h1>マイページ</h1>
+    <table class = "table">
+      <tbody>
         <tr>
-          <td><%= bookmark.tweet.customer.last_name %></td>
-          <td>
-            <%= link_to customers_tweet_path(bookmark.tweet) do %>
-              <%= bookmark.tweet.title %>
-            <% end %>
-          </td>
-          <td><%= bookmark.tweet.body %></td>
+          <th> 氏名 </th>
+          <th> <%= @customer.last_name %>
+               <%= @customer.first_name %>
+          </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+          <th> カナ </th>
+          <th> <%= @customer.last_name_kana %>
+               <%= @customer.first_name_kana %>
+          </th>
+        <tr>
+          <th> 電話番号 </th>
+          <th> <%= @customer.telephone_number %> </th>
+        </tr>
+        <tr>
+          <th> メールアドレス </th>
+          <th> <%= @customer.email %> </th>
+        </tr>
+      </tbody>
+    </table>
+    <h5 class = "col-12 text-right">登録情報を<%= link_to '編集する',customers_customers_infomation_edit_path %></h5></br>
+    <table class = "table">
+      <tbody>
+      <h4>ブックマーク一覧</h4>
+        <tr>
+          <th>投稿者名</th>
+          <th>タイトル</th>
+          <th>本文</th>
+        </tr>
+        <% @bookmarks.each do |bookmark| %>
+          <tr>
+            <td><%= bookmark.tweet.customer.last_name %></td>
+            <td>
+              <%= link_to customers_tweet_path(bookmark.tweet) do %>
+                <%= bookmark.tweet.title %>
+              <% end %>
+            </td>
+            <td><%= bookmark.tweet.body %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

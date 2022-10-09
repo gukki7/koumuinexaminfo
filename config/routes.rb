@@ -1,23 +1,20 @@
 Rails.application.routes.draw do
-devise_for :admins, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
-}
-devise_for :customers, controllers: {
-  sessions:      'customers/sessions',
-  passwords:     'customers/passwords',
-  registrations: 'customers/registrations'
-}
+  devise_for :admins, :skip => [:registrations, :password],controllers: {
+    sessions: 'admins/sessions',
+  }
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+    registrations: 'customers/registrations'
+  }
 
   namespace :admins do
     resources :exams, only: [:index, :new, :create, :show, :edit, :update]
     resources :subjects, only: [:index, :new, :create, :show, :edit, :update]
-
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :tweets, only: [:index, :new, :create, :show,  :edit, :destroy] do
-    resources :tweet_comments, only: [:create, :destroy]
+    resources :tweets, only: [:index, :show, :destroy] do
+      resources :tweet_comments, only: [:destroy]
     end
   end
 
